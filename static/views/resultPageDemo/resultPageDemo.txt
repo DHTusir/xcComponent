@@ -1,0 +1,25 @@
+<template>
+  <xc-result-page :resultInfo="resultInfo" text="关闭" @on-confirm="returnEn"></xc-result-page>
+</template>
+
+<script setup>
+import { ref, reactive, } from 'vue'
+
+// 待审核
+let resultInfo = reactive({
+  "path": "success",
+  "state": "待审核",
+  "describe": "2020-10-19 15:21:45",
+  "resultMsg": [
+    { key: "金额", value: "19999" },
+    { key: "付款人账号", value: "6212 1322 4231 8898" },
+    { key: "流水号", value: "102022110710006881" },
+    { key: "操作员", value: "张三" },
+  ]
+})
+
+const returnEn = () => {
+  console.log('返回页面');
+}
+
+</script>

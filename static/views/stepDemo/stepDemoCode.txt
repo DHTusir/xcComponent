@@ -1,0 +1,14 @@
+<template>
+    <xc-step :stepList="stepList" :stepIndex="stepIndex"></xc-step>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const stepList = ref(['汇款信息', '收款信息', '审核结果']);
+const stepIndex = ref(1);
+</script>
+
+<style scoped>
+
+</style>

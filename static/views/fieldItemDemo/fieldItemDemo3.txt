@@ -1,0 +1,33 @@
+<template>
+  <van-field
+            v-model="acc"
+            label="收款账户"
+            placeholder="请选择收款账户"
+            input-align="right"
+            readonly
+            is-link
+            @click="()=>{showAccPicker = true}"
+        >
+        </van-field>
+        <van-popup :show="showAccPicker" round position="bottom">
+          <van-picker
+              :columns="accList"
+              @cancel="showAccPicker = false"
+              @confirm="onAccConfirm"
+          />
+        </van-popup>
+</template>
+<script setup>
+import {ref} from "vue";
+const acc=ref("")
+const showAccPicker=ref(false)
+const accList = [
+  {text: '6212136666668855', value: 'AAAAAA'},
+  {text: '6212136666668231', value: 'BBBBBB'},
+  {text: '6212136666668412', value: 'CCCCCC'},
+];
+const onAccConfirm=({selectedOptions})=>{
+  showAccPicker.value = false;
+  acc.value = selectedOptions[0].text;
+}
+</script>

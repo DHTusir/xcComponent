@@ -1,0 +1,19 @@
+<template>
+  <xc-result-page :resultInfo="errorInfo" text="关闭" @on-confirm="returnEn"></xc-result-page>
+</template>
+
+<script setup>
+import { ref, reactive, } from 'vue'
+
+// 交易失败
+let errorInfo = reactive({
+  "path": "error",
+  "state": "提交失败",
+  "resMsg": "对不起，您暂不符合我行贷款申请条件"
+})
+
+const returnEn = () => {
+  console.log('返回页面');
+}
+
+</script>

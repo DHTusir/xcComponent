@@ -1,0 +1,49 @@
+<template>
+  <div class="demoWrap">
+        <xc-down-account  v-model="obj.value" :current="obj.current" :balance="obj.balance" label="动态账户" @setCurBal="setCurBal" :columns="columns" style="margin:50px 0"></xc-down-account>
+        <xc-down-accountT v-model="obj1.value1" :current="obj1.current1" :balance="obj1.balance1" label="付款卡" @setCurBal="setCurBal1" :columns="columns1"></xc-down-accountT>
+    </div>
+</template>
+
+<script setup>
+    import {ref,reactive} from "vue"
+    const columns = reactive([
+        { text: '6212136666668855', value: '6212136666668855'},
+        { text: '6212136666668858', value: '6212136666668858'},
+        { text: '6212136666665988', value: '6212136666665988'},
+        { text: '6212136666668888', value: '6212136666668888'},
+        { text: '6212136666665533', value: '6212136666665533'},
+    ])
+    let obj=reactive({
+        value : "6212136666668855",
+        current:'' ,
+        balance: ''
+    })
+    const setCurBal = ()=>{
+        //发送请求获取币种或余额 设置组件中的币种和余额
+        obj.current=["人民币","美元"][Math.floor(Math.random()*2)],
+        obj.balance="888,888,00"
+    }
+
+    const columns1 = reactive([
+        { text: '南洋商业银行(8855)', value: '6212136666668855'},
+        { text: '南洋商业银行(8858)', value: '6212136666668858'},
+        { text: '南洋商业银行(5988)', value: '6212136666665988'},
+        { text: '南洋商业银行(8888)', value: '6212136666668888'},
+        { text: '南洋商业银行(5533)', value: '6212136666665533'},
+    ])
+    let obj1=reactive({
+        value1   : "6212136666668855",
+        current1 : '',
+        balance1 : ''
+    })
+    const setCurBal1=()=>{
+        //发送请求获取币种或余额 设置组件中的币种和余额
+        obj1.current1=['CNY','USD'][Math.floor(Math.random()*2)]
+        obj1.balance1="888,888,00"
+    }
+</script>
+
+<style>
+
+</style>

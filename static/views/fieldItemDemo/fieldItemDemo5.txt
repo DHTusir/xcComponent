@@ -1,0 +1,17 @@
+<template>
+        <van-field
+            v-model="sms"
+            center
+            clearable
+            label="短信验证码"
+            placeholder="请输入短信验证码"
+        >
+          <template #button>
+            <xc-button size="mini" width="10rem"  radio >发送验证码</xc-button>
+          </template>
+        </van-field>
+</template>
+<script setup>
+import {ref} from "vue";
+const sms = ref('')
+</script>

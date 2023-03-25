@@ -1,0 +1,18 @@
+<template>
+    <xc-inputmoney :money="num3" @money-format="moneyFormat" :disabled="true">
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const num3 = ref('12345');
+
+const moneyFormat = (val, cny) => {
+    console.log(val, cny);
+    num2.value = val
+}
+</script>
+
+<style scoped>
+
+</style>

@@ -1,0 +1,19 @@
+<template>
+   <van-field
+            v-model="bank"
+            label="收款银行"
+            input-align="right"
+            readonly
+        >
+          <template #right-icon>
+              <img style="width: 2rem;height: 2rem;align-items: center;display: flex" src="@/assets/images/alone1.gif" @click="iconClick">
+          </template>
+        </van-field>
+</template>
+<script setup>
+import {ref} from "vue";
+const bank = ref('南洋商业银行')
+const iconClick = () => {
+  alert( bank.value)
+}
+</script>

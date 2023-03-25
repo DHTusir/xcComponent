@@ -1,0 +1,21 @@
+
+<template>
+    <xc-inputmoney :money="num2" @money-format="moneyFormat">
+        <template #button>
+            <span class="all" @click="click" style="font-size: 1.4rem; color: #1989FF;">全部</span>
+        </template>
+    </xc-inputmoney>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const click = () => {
+    num2.value = '99999.999'
+    console.log(num1.value);
+}
+</script>
+
+<style scoped>
+
+</style>

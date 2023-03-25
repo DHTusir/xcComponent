@@ -1,0 +1,7 @@
+<template>
+ <van-field v-model="value" label="用户名" placeholder="请输入用户名" />
+</template>
+<script setup>
+import {ref} from "vue";
+const value = ref('')
+</script>

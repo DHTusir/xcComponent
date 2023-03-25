@@ -1,0 +1,25 @@
+<template>
+  <xc-result-page :resultInfo="resultInfo" text="关闭" @on-info="information" @on-confirm="returnEn"></xc-result-page>
+</template>
+
+<script setup>
+import { ref, reactive, } from 'vue'
+
+// 交易成功
+let successInfo = reactive({
+  "path": "success",
+  "resCode": "BTE0000000",
+  "state": "交易成功",
+  "describe": "12345.60元"
+  // "flowNo": "102022110710006881",
+})
+
+const returnEn = () => {
+  console.log('返回页面');
+}
+
+const information = (item) => {
+  console.log('父元素==>',item);
+}
+
+</script>

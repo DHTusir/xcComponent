@@ -1,0 +1,86 @@
+<template>
+    <div class="demoWrap">
+          
+        <div class="phoneContent">
+            <xc-search-condition :searchData="searchData" :searchOptions="searchOptions"></xc-search-condition>
+        </div>
+    </div>
+
+  </template>
+  
+  <script setup>
+      import {ref,reactive} from "vue"
+      const searchData=reactive({
+          city:'Hangzhou',
+          country:'zhonguo',
+          bz:'all',//币种
+          dateStart:'2020-01-11',//date-start
+          dateEnd:'2022-03-17'//date-end
+      })
+      const columns = [
+            { text: '杭州', value: 'Hangzhou' },
+            { text: '宁波', value: 'Ningbo' },
+            { text: '温州', value: 'Wenzhou' },
+            { text: '绍兴', value: 'Shaoxing' },
+            { text: '湖州', value: 'Huzhou' },
+        ];
+      const columns1 = [
+        { text: '中国', value: 'zhonguo' },
+        { text: '韩国', value: 'hanguo' },
+        { text: '印度', value: 'yindu' },
+        { text: '美国', value: 'meiguo' },
+        { text: '加拿大', value: 'jianada' },
+      ];
+      const columns2 = [
+        { text: '全部', value: 'all' },
+        { text: '美元', value: 'my' },
+        { text: '丹朗', value: 'dm' },
+        { text: '日元', value: 'ry' },
+        { text: '瑞典克朗', value: 'rdkl' },
+        { text: '人民币', value: 'rmb' },
+        { text: '澳元', value: 'ay' },
+        { text: '欧元币', value: 'oyb' },
+        { text: '澳币', value: 'ab' },
+        { text: '新加坡元', value: 'xjpy' },
+        { text: '人民币跨境', value: 'rmbgj' },
+        { text: '加拿大元', value: 'jndy' },
+        { text: '英镑', value: 'yb' },
+        { text: '挪朗', value: 'll' },
+        { text: '台币', value: 'tb' },
+        { text: '瑞士法郎', value: 'rsfl' },
+        { text: '港币', value: 'gb' },
+        { text: '新西兰元', value: 'xxly' },
+      ];
+      const searchOptions=[
+          {
+              label:'城市',
+              propName:'city',
+              type:'select',
+              placeholder:'选择城市',
+              columns:columns,
+          },
+          {
+              label:'国家',
+              propName:'country',
+              type:'select',
+              placeholder:'选择国家',
+              columns:columns1,
+          },
+          {
+              label:'币种',
+              propName:'bz',
+              type:'selectBtn',
+              columns:columns2,
+          },
+          {
+              label:'自定义交易日期',
+              propName:['dateStart','dateEnd'],
+              type:'dateRange',
+          }
+      ]
+      
+  </script>
+  
+  <style>
+  
+  </style>

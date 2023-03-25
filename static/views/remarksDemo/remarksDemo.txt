@@ -1,0 +1,15 @@
+<template>
+  <xc-remarks :textColor="color" title="说明" :contentList="list"></xc-remarks>
+</template>
+
+<script setup>
+import { ref, reactive, } from 'vue'
+
+const list = reactive([
+  { text: '1. Vant 是一个轻量、可定制的移动端组件库，于 2017 年开源。目前 Vant 官方提供了 Vue 2 版本、Vue 3 版本和微信小程序版本。' },
+  { text: '2. Vant 是一个轻量、可定制的移动端组件库，于 2017 年开源。目前Vue 3 版本和微信小程序版本。' },
+  { text: '3. Vant 是一个轻量、可定制的移动端组件库，于 2017 年开源。' },
+]);
+const color = '#969799';
+
+</script>

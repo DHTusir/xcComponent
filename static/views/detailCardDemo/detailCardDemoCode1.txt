@@ -1,0 +1,22 @@
+<template>
+    <xc-detail-card :detailInfo="obj1"></xc-detail-card>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const obj1 = ref({
+    金额: '12,321,312.00',
+    姓名: '涂**',
+    银行卡号: '1233 **** **** 2322',
+    交易日期: '2023-03-17',
+    币种: '人名币',
+    交易状态: '成功',
+    账户类型: '其他',
+    交易流水号: '2132139835712783'
+});
+</script>
+
+<style scoped>
+
+</style>

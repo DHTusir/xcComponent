@@ -1,0 +1,90 @@
+全边框输入
+<xc-basicInput v-model="username" name="用户名" xcBorder clearable placeholder="请输入手机号码"/>
+<xc-basicInput v-model="password" type="password" name="密码" xcBorder placeholder="请输入登陆密码"/>
+
+单底线输入框
+<xc-basicInput  left-icon="contact" sigleLine xcBorder v-model="username1" placeholder="请输入您的帐户名">
+</xc-basicInput>
+<xc-basicInput  type="password"  left-icon="lock" v-model="password1" sigleLine xcBorder placeholder="请输入密码">
+</xc-basicInput>
+
+基本输入
+<xc-basicInput  xcBorder v-model="text" label="文本" left-icon="smile-o" right-icon="warning-o" placeholder="请输入">
+</xc-basicInput>
+<xc-basicInput  xcBorder label="手机号" :formatter="formatter" v-model="phoneNumber" type="tel" placeholder="请输入" >
+    <template  #label>    
+        <span style="margin-right: 0.8rem;">手机号</span>
+        <xc-button  type="info"  width="auto"  height="2.5rem"  size="mini"  @click="phoneNum()">+86 中国大陆 </xc-button>
+    </template>
+</xc-basicInput>   
+<xc-basicInput  xcBorder type="digit"  v-model="number" label="整数" placeholder="请输入">
+</xc-basicInput>   
+<xc-basicInput xcBorder v-model="sms" center clearable placeholder="请输入短信验证码">
+    <template  #button> 
+        <xc-button type="info" width="12.5rem" height="3rem" size="mini" @click="certify()" ref="certifyButton" :disabled="certifyDisabled">
+            {{certifyText}}
+        </xc-button>
+    </template>
+</xc-basicInput>
+
+简易表单输入框
+<xc-basicInput v-model="text1" label="文本" left-icon="smile-o" right-icon="warning-o" placeholder="请输入" >
+</xc-basicInput> 
+<xc-basicInput  v-model="text1" label="文本"  model-value="输入框只读"  readonly>
+</xc-basicInput> 
+<xc-basicInput  v-model="text1" label="文本"  readonly >
+    <template  #label>    
+        <span style="margin-right: 0.8rem;"> 手机号 </span>
+        <xc-button  type="info"  width="auto" height="2.5rem" size="mini" @click="phoneNum()" ref="certifyButton">+86 中国大陆
+        </xc-button>
+    </template>
+    <template  #button>
+        <xc-button  type="info" width="2.5rem" height="3rem" size="mini" @click="">A
+        </xc-button>
+    </template>
+</xc-basicInput> 
+<xc-basicInput  v-model="text1" label="文本"  model-value="输入框已禁用"  disabled>
+</xc-basicInput> 
+<xc-basicInput  v-model="text1" rows="1" autosize label="留言" type="textarea" placeholder="请输入留言">
+</xc-basicInput> 
+<xc-basicInput  v-model="text1" label="文本" placeholder="输入框内容右对齐" input-align="right">
+</xc-basicInput> 
+
+
+<script setup>
+    const username = ref('');
+    const password = ref('');
+    const username1 = ref('');
+    const password1 = ref('');
+    const text1 =ref("")
+    const text =ref("你的输入！！！")
+    const phoneNumber =ref("")
+    const number =ref("")
+    const sms =ref("")
+    let certifyText =ref("获取短信验证码")
+    let countdown =ref(5)
+    let certifyDisabled =ref(false)
+    const filePath = ref('static/views/basicInputDemo/basicInputDemoCode.txt')
+    let myVar;
+    
+    const certify = ()=>{
+        alert("发送成功");        
+        myVar = setInterval(function(){settime()} ,1000)
+    }
+    const phoneNum= ()=>{
+        alert("+86 手机号");               
+    }
+    const settime = () => { 
+        if (countdown.value == 0) { 
+            certifyDisabled.value =false;
+            certifyText.value ="获取短信验证码"; 
+            countdown.value = 5; 
+            clearInterval(myVar);
+        } else { 
+            certifyDisabled.value =true;
+            certifyText.value="重新发送(" + countdown.value + ")"; 
+            countdown.value--; 
+        } 
+    }
+    const formatter = (value) => value.replace(/\D/g,'');
+</script>

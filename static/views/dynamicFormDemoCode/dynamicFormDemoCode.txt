@@ -1,0 +1,224 @@
+<template>
+    <xc-dynamicForm
+        ref="xcRef" 
+        :formItem="formOpt" 
+        :formData="formData" 
+        @onSubmit="onSubmit"
+        @onFailed="onFailed"
+        >
+        <template #botoomBut>
+            <van-button round block type="primary" native-type="submit">
+            提交
+            </van-button>
+        </template>
+    </xc-dynamicForm>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const xcButton = resolveComponent('xc-button') // 手动解析已注册的组件
+
+const current = getCurrentInstance() // 获取当前实例
+const xcRef = ref(null)
+const submit = (val) => {
+    console.log(current);
+}
+const onSubmit = (val) => { // 成功触发
+    console.log(current);
+    console.log(formData.value);
+}
+const onFailed = (val) => { // 失败触发
+    console.log(val);
+}
+
+const formOpt = ref([ // 表单项
+    {
+        upLable: '收款人',
+        name: 'payerName',
+        type: 'basicInput',
+        space: true,
+        rules: [{required: true, message: '请填写户名'}],
+        props: {
+            label: '户名',
+            inputAlign: 'right'
+        }
+    },
+    {
+        name: 'payerAccount',
+        type: 'basicInput',
+        rules: [{required: true, message: '请填写金额'}],
+        props: {
+            label: '账号',
+            inputAlign: 'right'
+        }
+    },
+    {
+        name: 'bank',
+        type: 'vanPicker',
+        props: {
+            label: '银行',
+            placeholder: '选择银行',
+            columns: [
+                { text: '南洋商业银行', value: '1' },
+                { text: '浦发银行', value: '2' },
+                { text: '硅谷银行', value: '3' },
+            ],
+            showPicker: false,
+        },
+        // rules: [{required: true, message: '请填写金额'}],
+        onConfirmm: (val) => {
+            console.log(val);
+            formData.value.vanpicker = val.selectedOptions[0].text
+        }
+    },
+    {
+        name: 'payType',
+        type: 'vanPicker',
+        props: {
+            label: '收款方类型',
+            placeholder: '选择类型',
+            columns: [
+                { text: '境内个人', value: '境内个人' },
+                { text: '境外个人', value: '境外个人' },
+                { text: '境内企业', value: '境内企业' },
+            ],
+        },
+        showPicker: false,
+        // rules: [{required: true, message: '请填写金额'}],
+        onConfirmm: (val) => {
+            console.log(val);
+            formData.value.vanpicker = val.selectedOptions[0].text
+        }
+    },
+    {
+        name: 'money',
+        type: 'inputMoney',
+        space: true,
+        upLable: '转账金额',
+        rules: [{required: true, message: '请填写金额'}],
+        vNode: h('span', {
+            class: 'fad',
+            style: {
+                color: '#1989FF',
+                fontSize: '2rem'
+            },
+            onClick: () => {
+                console.log(formData.value.money);
+                formData.value.money = '9999999.999'
+            }
+            
+        }, '全部'),
+        moneyFormat: (val) => {
+            console.log(val);
+        }
+    },
+    {   // 银行卡下拉
+        name: 'accountT',
+        type: 'downAccountT',
+        rules: [{required: true, message: '请填写金额'}],
+        props: {
+            label: '付款账号',
+            columns: [
+                { text: '南洋商业银行(8855)', value: '6212136666668855'},
+                { text: '南洋商业银行(8858)', value: '6212136666668858'},
+                { text: '南洋商业银行(5988)', value: '6212136666665988'},
+            ]
+        },
+        setCurBal: () => {
+            formData.value.accountT.current=['CNY','USD'][Math.floor(Math.random()*2)]
+            formData.value.accountT.balance=["888,888,00","666,666,666,00"][Math.floor(Math.random()*2)]
+        }
+    },
+    {
+        name: 'payerUse',
+        type: 'basicInput',
+        space: true,
+        rules: [{required: true, message: '请填写金额'}],
+        props: {
+            label: '转账用途',
+            inputAlign: 'right'
+        }
+    },
+    {
+        name: 'payerText',
+        type: 'basicInput',
+        rules: [{required: true, message: '请填写金额'}],
+        props: {
+            label: '转账附言',
+            inputAlign: 'right'
+        }
+    },
+    {
+        name: 'phoneNumber',
+        type: 'basicInput',
+        props: {
+            inputAlign: 'right',
+            readonly: true
+        },
+        vNode: [
+            {
+                slotName: 'label',
+                render: [
+                h('span', {
+                    style: {
+                        marginRight: '0.8rem'
+                    }
+                }, '收款人手机号'),
+                h(xcButton, {
+                    type: "info",
+                    width: "auto",
+                    height: "2.5rem",
+                    size: "mini"
+                }, () => '+86 中国大陆▼')
+                ]
+            },
+            {
+                slotName: 'button',
+                render: h(xcButton, {
+                    style: {
+                        marginBottom: "0.5rem",
+                    },
+                    type:"info" ,
+                    width:"3.5rem" ,
+                    height:"2.5rem" ,
+                    size:"mini"
+                }, () => 'A')
+            }
+        ]
+    },
+    {
+        name: 'cell',
+        type: 'vanCell',
+        props: {
+            title: '标题'
+        }
+    },
+]);
+
+const formData = ref({ // 表单数据
+    payerName: '收款人14300292833',
+    payerAccount: '621727282718',
+    // account: { // 账户下拉
+    //     value: '456',
+    //     current:'' ,
+    //     balance: ''
+    // },
+    bank: '南洋商业银行',
+    payType: '境内个人',
+    money: '12345',
+    accountT: { // 银行卡下拉
+        value  : "6212136666668855",
+        current : '',
+        balance : ''
+    },
+    payerUse: '个人转账',
+    payerText: '转账',
+    phoneNumber: '',
+    cell: '内容'
+});
+</script>
+
+<style scoped>
+
+</style>

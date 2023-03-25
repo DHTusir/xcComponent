@@ -1,0 +1,11 @@
+<template>
+    <van-field label="是否加入收款人列表" label-width="15rem" style="padding-bottom: 0rem">
+           <template #button>
+             <van-switch v-model="checked" />
+           </template>
+         </van-field>
+</template>
+<script setup>
+import {ref} from "vue";
+const checked = ref(false)
+</script>

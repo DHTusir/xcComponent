@@ -1,0 +1,31 @@
+
+<template>
+        <xc-selectHead label="选择账户" labelWidth="16rem" :selectList="selectList2" @rightSearchClick="rightSearchClick"></xc-selectHead>
+        <van-action-sheet v-model:show="showAccList"  title="选择账户"  :actions="actions1" @select="onAccList" />
+            <van-action-sheet v-model:show="show" title="标题">
+              <div style=" padding: 16px 16px 160px;">筛选内容</div>
+            </van-action-sheet>
+</template>
+<script setup>
+import {reactive, ref} from "vue";
+const show =ref(false);
+const showAccList =ref(false);
+const rightSearchClick=()=>{
+  show.value=true;
+}
+const selectList2 = reactive([
+  {
+    title: '6212136666668855', click: () => {
+      showAccList.value=true;
+    },
+  }])
+  const actions1 = [
+    { name: '6212136666668855' },
+    { name: '6212136666668123' },
+    { name: '6212136666668324' },
+  ];
+  const onAccList=(action)=>{
+    selectList2[0].title=action.name;
+    showAccList.value = false;
+  }
+</script>

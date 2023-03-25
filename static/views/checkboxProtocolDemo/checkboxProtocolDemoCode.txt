@@ -1,0 +1,14 @@
+<xc-checkboxProtocol :checkHtml="infoHtml" v-model="checked" @change="checkClick" label-disabled> 
+</xc-checkboxProtocol>
+
+
+<script setup name="buttonDemo">
+    import { ref } from 'vue'
+    const filePath = ref('static/views/checkboxProtocolDemo/checkboxProtocolDemoCode.txt')
+    const infoHtml = ref(`
+        本公司/单位已阅读，理解并同意银行提供的本交易
+        <a style="color:#489CD8;">定期条款细则以及科创盈美元阶梯式利率定期存款条款细则</a>，
+        并接受任何根据本申请进行的扣划行为。
+    `)
+    const checked = ref(true)
+</script>

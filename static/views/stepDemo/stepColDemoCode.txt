@@ -1,0 +1,34 @@
+<template>
+    <xc-stepcol :stepList="stepList2" :stepIndex="stepIndex">
+        <template #sloatName>
+            <xc-button>订单详情</xc-button>
+        </template>
+        <template #sloatName2>
+            <span style="font-size: 1.6rem; color: #D4594A;">正在换汇...</span>
+        </template>
+    </xc-stepcol>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const stepList2 = ref([
+    {
+        label: '下单',
+        slot: 'sloatName'
+    },
+    {
+        label: '等待付款',
+        slot: 'sloatName'
+    },
+    {
+        label: '付款成功',
+        slot: 'sloatName2'
+    }
+]);
+const stepIndex = ref(1);
+</script>
+
+<style scoped>
+
+</style>

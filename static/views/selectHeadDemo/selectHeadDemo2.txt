@@ -1,0 +1,41 @@
+
+<template>
+        <xc-selectHead :selectList="selectList1" :showRightIcon="showrightIcon"></xc-selectHead>
+        <van-action-sheet v-model:show="showTermList"  title="选择期限" :actions="termList" @select="onSelectTermList" />
+        <van-action-sheet v-model:show="showMoneyList"  title="选择金额" :actions="moneyList" @select="onSelectMoneyList" />
+</template>
+<script setup>
+import {reactive, ref} from "vue";
+const showTermList =ref(false);
+const showMoneyList =ref(false);
+const showrightIcon = ref(false);
+const selectList1 = reactive([
+  {title: '不限期限',click: () => {
+      showTermList.value=true;
+    },},
+  {
+    title: '不限金额', click: () => {
+      showMoneyList.value=true;
+    },
+  }])
+const termList = [
+  { name: '半年' },
+  { name: '一年' },
+  { name: '三年' },
+  { name: '不限期限' },
+];
+const moneyList = [
+  { name: '10.000.00' },
+  { name: '20.000.00' },
+  { name: '50.000.00' },
+  { name: '不限金额' },
+];
+const  onSelectTermList=(action)=>{
+  selectList1[0].title=action.name;
+  showTermList.value=false;
+}
+const  onSelectMoneyList=(action)=>{
+  selectList1[1].title=action.name;
+  showMoneyList.value=false;
+}
+</script>

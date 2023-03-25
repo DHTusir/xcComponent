@@ -1,0 +1,46 @@
+按钮类型 
+<xc-button type="default">默认按钮</xc-button>
+<xc-button type="primary">主要按钮</xc-button>
+<xc-button type="info">菜单按钮</xc-button>
+<xc-button type="success">成功按钮</xc-button>
+
+按钮尺寸
+<xc-button size="large">大按钮</xc-button>
+<xc-button size="middle">中等按钮</xc-button>
+<xc-button size="small">默认按钮</xc-button>
+<xc-button size="mini">迷你</xc-button> 
+
+禁用状态
+<xc-button type="default" disabled>默认按钮</xc-button>
+<xc-button type="primary" disabled>主要按钮</xc-button>
+<xc-button type="info" disabled>菜单按钮</xc-button>
+<xc-button type="success" disabled>成功按钮</xc-button>
+
+加载中...
+<xc-button type="default"  loading  icon="src/assets/images/alone1.gif"></xc-button>
+<xc-button type="primary" loading  icon="src/assets/images/alone1.gif"></xc-button>
+<xc-button type="info" loading  ></xc-button>
+<xc-button type="success"  loading ></xc-button>
+
+图标
+<xc-button icon="https://fastly.jsdelivr.net/npm/@vant/assets/user-active.png">user-active</xc-button>
+<xc-button icon="src/assets/images/alone1.gif">alone1</xc-button>
+<xc-button icon="src/assets/images/Vector1.png">Vector1</xc-button>
+
+
+平铺
+<div style="display: flex; flex-wrap: nowrap; justify-content: space-evenly;">
+    <xc-button type="default" size="middle">继续汇购</xc-button>
+    <xc-button type="primary" size="middle">完成</xc-button>
+</div>
+
+事件
+<xc-button @click="increaseCount" text="点击事件"></xc-button>
+<xc-button @touchstart="increaseCount" text="触摸事件"></xc-button>
+
+圆角
+<xc-button type="primary" size="large" radius="25px">主要按钮</xc-button>
+
+<script setup>
+    const increaseCount = () =>{ alert("你点击了我！"); }
+</script>

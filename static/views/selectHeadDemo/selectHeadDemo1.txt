@@ -1,0 +1,47 @@
+
+<template>
+    <xc-selectHead :selectList="selectList" @rightSearchClick="rightSearchClick"></xc-selectHead>
+       <van-popup
+                v-model:show="showTimeSelect"
+                position="bottom"
+                round
+                :style="{ height: '50%' }"
+            >
+              <van-date-picker
+                  title="选择日期"
+                  :max-date="new Date()"
+                  @confirm="confirmDate"
+              />
+            </van-popup>
+            <van-action-sheet v-model:show="showAccSelect"  title="选择账户" :actions="actions" @select="onSelect" />
+            <van-action-sheet v-model:show="show" title="标题">
+              <div style=" padding: 16px 16px 160px;">筛选内容</div>
+            </van-action-sheet>
+</template>
+<script setup>
+import {reactive, ref} from "vue";
+const selectList = reactive([
+  {title: '2023-03-04',click: () => {
+      showTimeSelect.value=true;
+    }},
+  {
+    title: '全部账户', click: () => {
+      showAccSelect.value=true;
+    }
+  }])
+const showAccSelect =ref(false);
+const showTimeSelect =ref(false);
+const show =ref(false);
+const onSelect=(action)=>{
+  selectList[1].title=action.name;
+  showAccSelect.value = false;
+}
+const rightSearchClick=()=>{
+  show.value=true;
+}
+const confirmDate=({selectedValues})=>{
+  let time=selectedValues.join('-');
+  selectList[0].title=time;
+  showTimeSelect.value=false;
+}
+</script>
